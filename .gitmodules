@@ -1,0 +1,19 @@
+[submodule "lain"]
+  path = modules/lain
+  url = https://github.com/lcpz/lain
+
+[submodule "bling"]
+  path = modules/bling
+  url = https://github.com/BlingCorp/bling
+
+[submodule "rubato"]
+  path = modules/rubato
+  url = https://github.com/andOrlando/rubato
+
+[submodule "layout-machi"]
+  path = modules/layout-machi
+  url = https://github.com/xinhaoyuan/layout-machi
+
+[submodule "vicious"]
+  path = modules/vicious
+  url = https://github.com/vicious-widgets/vicious

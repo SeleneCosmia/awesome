@@ -1,0 +1,9 @@
+#dev directories
+.vscode/
+/lua_modules
+/luarocks
+# selene linter config files
+selene.toml
+awesome.yml
+# local luaLS definition/meta files
+lib/
