@@ -17,3 +17,7 @@
 [submodule "vicious"]
   path = modules/vicious
   url = https://github.com/vicious-widgets/vicious
+
+[submodule "lib/lgi"]
+	path = lib/lgi
+	url = https://github.com/aarondill/lgi-types.git

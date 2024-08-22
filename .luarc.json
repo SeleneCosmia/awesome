@@ -6,10 +6,9 @@
             "?.lua",
             "?/init.lua",
             "?/?/init.lua",
-            "?/?/?.lua",
-            "themes/?/?.lua",
+            "./?/?/?.lua",
+            "./themes/?/?.lua",
             "/usr/share/awesome/lib/?.lua",
-            "/usr/share/awesome/themes/?/?.lua",
             "/usr/share/lua/5.4/?.lua",
             "/usr/share/lua/5.4/?/init.lua",
             "/home/hebedite/.config/luarocks/share/lua/5.4/?.lua",
@@ -17,13 +16,11 @@
     ],
     "workspace": {
         "library": [
-            "?.lua",
             "?/init.lua",
-            "lib/awesome_meta/?.lua",
-            "modules/?/?.lua",
-            "/usr/share/awesome/lib/?.lua"
+            "./lib/awesome",
+            "./modules",
+            "/usr/share/awesome/lib"
         ],
-        "maxPreload": 8000,
         "preloadFileSize": 1000,
         "checkThirdParty": false
     },
@@ -31,7 +28,8 @@
         "disable": [
             "missing-fields",
             "lowercase-global",
-            "unused-local"
+            "unused-local",
+            "undefined-field"
         ],
         "globals": [
             "awesome",
