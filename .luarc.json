@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "diagnostics": {
+    "globals": [
+      "awesome",
+      "awful",
+      "beautiful",
+      "client",
+      "mouse",
+      "root",
+      "s",
+      "screen",
+      "tag"
+    ],
+    "disable": [
+      "lowercase-global",
+      "missing-fields",
+      "unused-local",
+      "undefined-field"
+    ]
+  },
+  "runtime": {
+    "version": "Lua 5.4",
+    "path": [
+      "?.lua",
+      "?/init.lua",
+      "./modules/?/init.lua",
+      "/usr/share/awesome/lib/?.lua",
+      "/usr/share/awesome/lib/?/init.lua",
+      "/usr/share/lua/5.4/lgi.lua",
+      "/usr/share/lua/5.4/lgi/init.lua"
+    ]
+  },
+  "workspace": {
+    "checkThirdParty": false,
+    "library": [
+      "/usr/share/awesome/lib/",
+      "/usr/share/lua/5.4/lgi",
+      "./libs/awesome/",
+      "./libs/lgi/",
+      "./libs/modules/",
+      "./modules/"
+    ]
+  }
+}
