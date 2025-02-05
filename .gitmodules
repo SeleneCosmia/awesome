@@ -16,3 +16,6 @@
 [submodule "modules/lain"]
 	path = modules/lain
 	url = git@github.com:lcpz/lain.git
+[submodule "libs/awesome"]
+	path = libs/awesome
+	url = git@github.com:SeleneCosmia/AwesomeWM.git
