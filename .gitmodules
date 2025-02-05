@@ -5,13 +5,13 @@
 	path = modules/bling
 	url = git@github.com:BlingCorp/bling.git
 [submodule "modules/awesome-freedesktop"]
-	path = modules/awesome-freedesktop
+	path = modules/freedesktop
 	url = git@github.com:lcpz/awesome-freedesktop.git
 [submodule "modules/layout-machi"]
 	path = modules/layout-machi
 	url = git@github.com:xinhaoyuan/layout-machi.git
 [submodule "modules/awesome-modalbind"]
-	path = modules/awesome-modalbind
+	path = modules/modalbind
 	url = git@github.com:crater2150/awesome-modalbind.git
 [submodule "modules/lain"]
 	path = modules/lain

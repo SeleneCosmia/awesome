@@ -1,6 +1,7 @@
 local awful = require 'awful'
 local gears = require 'gears'
 local menubar = require 'menubar'
+local hotkeys_popup = require 'awful.hotkeys_popup'
 
 local modkey = 'Mod4'
 local alt    = 'Mod1'
@@ -37,29 +38,21 @@ keys.client_buttons = gears.table.join(
 
 -- Global keybinds
 keys.global_keys = gears.table.join(
-  awful.key ({ mod }, 's',
-    function()
-      require 'awful.hotkeys_popup'.show_help()
-    end,
+  awful.key ({ mod }, 's', hotkeys_popup.show_help,
     { description = 'Show help', group = 'hotkeys' }
   ),
 
-  awful.key ({ mod }, 'a',
-    function()
-      mymainmenu:show()
-    end,
+  awful.key ({ mod }, 'a', function() mymainmenu:show() end,
     { description = 'Main menu popup', group = 'awesome' }
   ),
 
-  awful.key ({ mod, 'Shift' }, 'r',
-    function() awesome.restart() end,
+  awful.key ({ mod, 'Shift' }, 'r', awesome.restart,
     { description = 'Reload awesome', group = 'awesome' }
   ),
 
-  awful.key({ mod, 'Shift' }, 'q', awesome.quit, {
-    description = 'Quit awesome',
-    group = 'awesome'
-  }),
+  awful.key({ mod, 'Shift' }, 'q', awesome.quit,
+    { description = 'Quit awesome', group = 'awesome' }
+  ),
 
   awful.key({ mod }, 'x',
     function()
@@ -76,14 +69,16 @@ keys.global_keys = gears.table.join(
   -- Volume
   awful.key({}, 'XF86AudioRaiseVolume',
     function()
-      awesome.emit_signal('volume::change', 5)
+      awful.spawn.with_shell('wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+')
+      awesome.emit_signal('volume_change')
     end,
     { description = 'Raise volume', group = 'hotkeys' }
   ),
 
   awful.key({}, 'XF86AudioLowerVolume',
     function()
-      awesome.emit_signal('volume::change', -5)
+      awful.spawn.with_shell('wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-')
+      awesome.emit_signal('volume_change')
     end,
     { description = 'Decrease volume', group = 'hotkeys' }
   ),
@@ -337,7 +332,6 @@ keys.global_keys = gears.table.join(
     end,
   }
 )
-
 
 keys.client_keys = gears.table.join(
   awful.key({ mod, 'Shift' }, 'f',
