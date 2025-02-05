@@ -1,6 +1,3 @@
-[submodule "libs/awesome"]
-	path = libs/awesome
-	url = git@github.com:kosorin/awesome-code-doc.git
 [submodule "modules/rubato"]
 	path = modules/rubato
 	url = git@github.com:andOrlando/rubato.git
