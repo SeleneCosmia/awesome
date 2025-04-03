@@ -19,3 +19,6 @@
 [submodule "libs/awesome"]
 	path = libs/awesome
 	url = git@github.com:SeleneCosmia/AwesomeWM.git
+[submodule "libs/lgi"]
+	path = libs/lgi
+	url = git@github.com:aarondill/lgi-types.git

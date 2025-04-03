@@ -1,10 +1,11 @@
 .luacheckrc
+modules/surface_filters
+libs/lgi_local
+utils/archmenu.lua
 
 *.src.rock
 *.zip
 *.tar.gz
-
-modules/surface_filters
 
 *.o
 *.os

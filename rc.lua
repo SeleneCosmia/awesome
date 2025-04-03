@@ -1,5 +1,10 @@
 -- awesome_mode: api-level=4:screen=on
+package.loaded['awful.hotkeys_popup.keys.tmux'] = {}
+require 'awful.hotkeys_popup.keys'
+
 pcall(require, 'luarocks.loader')
+
+require 'awful.permissions'
 -- stylua: ignore start
 local lgi         = require 'lgi'
 local cairo       = lgi.cairo
@@ -8,40 +13,25 @@ local cr          = cairo.Context()
 local gears       = require 'gears'
 local gfs         = require 'gears.filesystem'
 local awful       = require 'awful'
-require 'awful.autofocus'
+-- stylua: ignore end
+local mods = require 'utils.globals'.modules
+local modules_dir = mods.get_modules_dir()
 
-local modules_dir = gfs.get_configuration_dir() .. 'modules/'
-
-package.path  = package.path .. ';' ..
-                modules_dir .. '?/init.lua;' ..
-                modules_dir..'?.lua'
-package.cpath = package.cpath .. ';' ..
-                modules_dir .. '?.so'
-
+package.path = package.path .. ';' .. modules_dir .. '?/init.lua;' .. modules_dir .. '?.lua'
+package.cpath = package.cpath .. ';' .. modules_dir .. '?.so'
+-- stylua: ignore start
 local wibox       = require 'wibox'
 local beautiful   = require 'beautiful'
 local ruled       = require 'ruled'
 local naughty     = require 'naughty'
 local lain        = require 'lain'
 local menubar     = require 'menubar'
--- local freedesktop = require 'awesome-freedesktop'
+-- local freedesktop = require 'freedesktop'
 
-local hotkeys_popup = require 'awful.hotkeys_popup'
-                      require 'awful.hotkeys_popup.keys'
 -- stylua: ignore end
-
-naughty.connect_signal('request::display_error', function(message, startup)
-  naughty.notification {
-    urgency = 'critical',
-    title = 'Oops, an error happened' .. (startup and ' during startup!' or '!'),
-    message = message,
-  }
-end)
 
 terminal = 'wezterm'
 editor = os.getenv('EDITOR') or 'nvim'
-
-modkey = 'Mod4'
 
 tag.connect_signal('request::default_layouts', function()
   awful.layout.append_default_layouts({
@@ -70,7 +60,7 @@ local myawesomemenu = {
   {
     'Hotkeys',
     function()
-      hotkeys_popup.show_help(nil, awful.screen.focused())
+      require 'awful.hotkeys_popup.widget'.show_help(nil, awful.screen.focused())
     end,
   },
   { 'Manual', string.format('%s -e batman awesome', terminal) },
@@ -131,13 +121,13 @@ screen.connect_signal('request::desktop_decoration', function(s)
       awful.button({}, 1, function(t)
         t:view_only()
       end),
-      awful.button({ modkey }, 1, function(t)
+      awful.button({ 'Mod4' }, 1, function(t)
         if client.focus then
           client.focus:move_to_tag(t)
         end
       end),
       awful.button({}, 3, awful.tag.viewtoggle),
-      awful.button({ modkey }, 3, function(t)
+      awful.button({ 'Mod4' }, 3, function(t)
         if client.focus then
           client.focus:toggle_tag(t)
         end
@@ -157,7 +147,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
     bg = '#1e1c32',
     widget = {
       layout = wibox.layout.align.horizontal,
-      expand = 'outside',
+      -- expand = 'outside',
       {
         layout = wibox.layout.fixed.horizontal,
         mylauncher,
@@ -174,10 +164,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
   }
 end)
 
-local keys = require 'utils.keys'
-root.keys(keys.global_keys)
-root.buttons(keys.global_buttons)
-
+require 'core.keybinds'
 require 'core.rules'
 
 -- {{{ Titlebars
@@ -227,13 +214,9 @@ ruled.notification.connect_signal('request::rules', function()
     rule = {},
     properties = {
       screen = awful.screen.preferred,
-      implicit_timeout = 8,
+      implicit_timeout = 6,
     },
   }
-end)
-
-naughty.connect_signal('request::display', function(n)
-  naughty.layout.box { notification = n }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -241,6 +224,6 @@ client.connect_signal('mouse::enter', function(c)
   c:emit_signal('request::activate', 'mouse_enter', { raise = false })
 end)
 
-require 'utils.startup'
+require 'utils.signals'
 
 collectgarbage('incremental', 110, 1000, 0)

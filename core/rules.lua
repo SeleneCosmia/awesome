@@ -18,7 +18,7 @@ ruled.client.connect_signal('request::rules', function()
     properties = {
       focus = awful.client.focus.filter,
       raise = true,
-      screen = awful.screen.prefe8rred,
+      screen = awful.screen.preferred,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen,
     },
   }
@@ -62,6 +62,7 @@ ruled.client.connect_signal('request::rules', function()
 
   new_rule {
     rule_every = {
+      instance = { 'Blender' },
       class = { 'Blender' },
       name = { 'Preferences' },
     },
@@ -69,8 +70,6 @@ ruled.client.connect_signal('request::rules', function()
       floating = true,
       maximized = false,
       ontop = true,
-      below = false,
-      placement = awful.placement.centered,
     },
   }
 
