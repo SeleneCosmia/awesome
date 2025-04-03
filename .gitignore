@@ -1,6 +1,6 @@
 .luacheckrc
 modules/surface_filters
-libs/lgi_local
+libs/lgi_local/*
 utils/archmenu.lua
 
 *.src.rock
